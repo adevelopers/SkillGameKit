@@ -22,6 +22,7 @@ class GameScene: SKScene {
     override func sceneDidLoad() {
         self.lastUpdateTime = 0
         addBackground()
+        addCamera()
     }
     
     
@@ -79,6 +80,16 @@ extension GameScene {
         background = SKSpriteNode(imageNamed: "starOnBg")
         addChild(background)
         background.position = .zero
+    }
+    
+}
+
+extension GameScene {
+    
+    func addCamera() {
+        let cam = SKCameraNode()
+        camera = cam
+        addChild(cam)
     }
     
 }
