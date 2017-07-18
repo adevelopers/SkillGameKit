@@ -42,7 +42,18 @@ class GameScene: SKScene {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
+        guard let touch = touches.first as UITouch! else { return }
+        let acceleration: CGFloat = 1
+        let location = touch.location(in: self)
+        let previousLocation = touch.previousLocation(in: self)
+        let translation = CGPoint(x: location.x - previousLocation.x,
+                                  y: location.y - previousLocation.y)
+
+        if let camera = camera {
+            let pointOfNode = camera.position
+            camera.position = CGPoint(x: pointOfNode.x - translation.x * acceleration,
+                                      y: pointOfNode.y - translation.y * acceleration)
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
