@@ -21,8 +21,11 @@ class GameScene: SKScene {
     
     override func sceneDidLoad() {
         self.lastUpdateTime = 0
+        
         addBackground()
+        addLabel()
         addCamera()
+        
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -48,6 +51,31 @@ extension GameScene {
         background = SKSpriteNode(imageNamed: "starOnBg")
         addChild(background)
         background.position = .zero
+    }
+    
+    func addLabel() {
+
+        let fontSize: CGFloat = 64
+        let title: String = "C2H4"
+        let range = title.range(of: title)
+        let nsrange = title.nsRange(from: range!)
+        
+        let attributedString = NSMutableAttributedString().characterSubscriptAndSuperscript(
+            string: "C2H4",
+            characters: ["2","4"],
+            type: .aSub,
+            fontSize: fontSize,
+            scriptFontSize: fontSize*0.7,
+            offSet: 8,
+            length: [1,1],
+            alignment: .center)
+        
+        attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.black, range: nsrange )
+        
+        let label = ASAttributedLabelNode(size: self.size)
+        label.attributedString = attributedString
+        addChild(label)
+        
     }
     
 }
