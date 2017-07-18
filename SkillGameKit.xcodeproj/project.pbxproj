@@ -15,9 +15,12 @@
 		71225C1F1F1E0DC900F38273 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71225C1D1F1E0DC900F38273 /* Main.storyboard */; };
 		71225C211F1E0DC900F38273 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71225C201F1E0DC900F38273 /* Assets.xcassets */; };
 		71225C241F1E0DC900F38273 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71225C221F1E0DC900F38273 /* LaunchScreen.storyboard */; };
+		F29A60F5A6721FD262767D8E /* Pods_SkillGameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 681CA900BBA880DA244C0178 /* Pods_SkillGameKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B7233BA38525D25BE36CFA2 /* Pods-SkillGameKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkillGameKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-SkillGameKit/Pods-SkillGameKit.release.xcconfig"; sourceTree = "<group>"; };
+		681CA900BBA880DA244C0178 /* Pods_SkillGameKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SkillGameKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71225C101F1E0DC900F38273 /* SkillGameKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkillGameKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71225C131F1E0DC900F38273 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71225C151F1E0DC900F38273 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -28,6 +31,7 @@
 		71225C201F1E0DC900F38273 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		71225C231F1E0DC900F38273 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		71225C251F1E0DC900F38273 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89A0CD5F8F7FC08622C40C50 /* Pods-SkillGameKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkillGameKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SkillGameKit/Pods-SkillGameKit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +39,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F29A60F5A6721FD262767D8E /* Pods_SkillGameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3200F68BCC90F340EB2A8AB6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				681CA900BBA880DA244C0178 /* Pods_SkillGameKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		71225C071F1E0DC800F38273 = {
 			isa = PBXGroup;
 			children = (
 				71225C121F1E0DC900F38273 /* SkillGameKit */,
 				71225C111F1E0DC900F38273 /* Products */,
+				C668CDA8BDB869AD11BB07F7 /* Pods */,
+				3200F68BCC90F340EB2A8AB6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +88,15 @@
 			path = SkillGameKit;
 			sourceTree = "<group>";
 		};
+		C668CDA8BDB869AD11BB07F7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				89A0CD5F8F7FC08622C40C50 /* Pods-SkillGameKit.debug.xcconfig */,
+				4B7233BA38525D25BE36CFA2 /* Pods-SkillGameKit.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -80,9 +104,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 71225C281F1E0DC900F38273 /* Build configuration list for PBXNativeTarget "SkillGameKit" */;
 			buildPhases = (
+				1BF42F236F25C1ADA43AB790 /* [CP] Check Pods Manifest.lock */,
 				71225C0C1F1E0DC900F38273 /* Sources */,
 				71225C0D1F1E0DC900F38273 /* Frameworks */,
 				71225C0E1F1E0DC900F38273 /* Resources */,
+				F649B6169CE1695193BBC7B8 /* [CP] Embed Pods Frameworks */,
+				67359029A9C7FF06D9944FE8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -142,6 +169,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1BF42F236F25C1ADA43AB790 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		67359029A9C7FF06D9944FE8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SkillGameKit/Pods-SkillGameKit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F649B6169CE1695193BBC7B8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SkillGameKit/Pods-SkillGameKit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		71225C0C1F1E0DC900F38273 /* Sources */ = {
@@ -273,6 +348,7 @@
 		};
 		71225C291F1E0DC900F38273 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 89A0CD5F8F7FC08622C40C50 /* Pods-SkillGameKit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = RF42FG352F;
@@ -287,6 +363,7 @@
 		};
 		71225C2A1F1E0DC900F38273 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B7233BA38525D25BE36CFA2 /* Pods-SkillGameKit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = RF42FG352F;
