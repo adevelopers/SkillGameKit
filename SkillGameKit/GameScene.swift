@@ -11,13 +11,18 @@ import GameplayKit
 
 class GameScene: SKScene {
     
+    var background: SKSpriteNode!
+    
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
+    
 
     private var lastUpdateTime : TimeInterval = 0
     
     override func sceneDidLoad() {
         self.lastUpdateTime = 0
+        addBackground()
+        addCamera()
     }
     
     
@@ -67,4 +72,24 @@ class GameScene: SKScene {
         
         self.lastUpdateTime = currentTime
     }
+}
+
+extension GameScene {
+    
+    func addBackground() {
+        background = SKSpriteNode(imageNamed: "starOnBg")
+        addChild(background)
+        background.position = .zero
+    }
+    
+}
+
+extension GameScene {
+    
+    func addCamera() {
+        let cam = SKCameraNode()
+        camera = cam
+        addChild(cam)
+    }
+    
 }
