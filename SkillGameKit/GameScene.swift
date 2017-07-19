@@ -61,3 +61,22 @@ extension GameScene {
     }
     
 }
+
+extension GameScene {
+    
+    @discardableResult
+    func walk(by substance: Substance<String>?, render: (Substance<String>)->Void = {_ in } ) -> Substance<String>? {
+        guard let substance = substance else { return nil }
+        render(substance)
+        return walk(by: substance.child)
+    }
+    
+    func addSubstanceNode() {
+        let rootSubstance = Substance(value: "H",
+                                      child: Substance(value: "C",
+                                                       child: Substance(value: "H")))
+        walk(by: rootSubstance) { substance in
+            print("substance: \(substance.value)")
+        }
+    }
+}
