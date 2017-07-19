@@ -11,6 +11,8 @@ import GameplayKit
 
 class GameScene: SKScene {
     
+    typealias SubstanceType = String
+    
     var background: SKSpriteNode!
     
     var entities = [GKEntity]()
@@ -66,10 +68,10 @@ extension GameScene {
 extension GameScene {
     
     @discardableResult
-    func walk(by substance: Substance<String>?, render: (Substance<String>)->Void = {_ in } ) -> Substance<String>? {
+    func walk(by substance: Substance<SubstanceType>?, render: (Substance<SubstanceType>)->Void = {_ in } ) -> Substance<SubstanceType>? {
         guard let substance = substance else { return nil }
         render(substance)
-        return walk(by: substance.child)
+        return walk(by: substance.child, render: render)
     }
     
     func addSubstanceNode() {
