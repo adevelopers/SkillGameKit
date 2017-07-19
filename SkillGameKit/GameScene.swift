@@ -105,6 +105,7 @@ extension GameScene {
         line.addLine(to: newPosition)
         line.close()
         let relation = SKShapeNode(path: line.cgPath )
+        relation.lineWidth = 4
         addChild(node)
         
         if number > 0 {
