@@ -19,10 +19,11 @@ class GameScene: SKScene {
 
     private var lastUpdateTime : TimeInterval = 0
     
-    override func sceneDidLoad() {
+    override func didMove(to view: SKView) {
         self.lastUpdateTime = 0
         if !isBackgroundHiden { addBackground() }
         addCamera()
+        addSubstanceNode()
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
