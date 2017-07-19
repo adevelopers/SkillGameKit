@@ -15,6 +15,7 @@
 		71225C1F1F1E0DC900F38273 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71225C1D1F1E0DC900F38273 /* Main.storyboard */; };
 		71225C211F1E0DC900F38273 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71225C201F1E0DC900F38273 /* Assets.xcassets */; };
 		71225C241F1E0DC900F38273 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71225C221F1E0DC900F38273 /* LaunchScreen.storyboard */; };
+		71CB0DBB1F1F57AC00A05DB1 /* Substance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CB0DBA1F1F57AC00A05DB1 /* Substance.swift */; };
 		F29A60F5A6721FD262767D8E /* Pods_SkillGameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 681CA900BBA880DA244C0178 /* Pods_SkillGameKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		71225C201F1E0DC900F38273 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		71225C231F1E0DC900F38273 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		71225C251F1E0DC900F38273 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71CB0DBA1F1F57AC00A05DB1 /* Substance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Substance.swift; sourceTree = "<group>"; };
 		89A0CD5F8F7FC08622C40C50 /* Pods-SkillGameKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkillGameKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SkillGameKit/Pods-SkillGameKit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +77,7 @@
 		71225C121F1E0DC900F38273 /* SkillGameKit */ = {
 			isa = PBXGroup;
 			children = (
+				71CB0DB91F1F577600A05DB1 /* Models */,
 				71225C131F1E0DC900F38273 /* AppDelegate.swift */,
 				71225C151F1E0DC900F38273 /* GameScene.sks */,
 				71225C171F1E0DC900F38273 /* Actions.sks */,
@@ -86,6 +89,14 @@
 				71225C251F1E0DC900F38273 /* Info.plist */,
 			);
 			path = SkillGameKit;
+			sourceTree = "<group>";
+		};
+		71CB0DB91F1F577600A05DB1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				71CB0DBA1F1F57AC00A05DB1 /* Substance.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		C668CDA8BDB869AD11BB07F7 /* Pods */ = {
@@ -225,6 +236,7 @@
 			files = (
 				71225C1A1F1E0DC900F38273 /* GameScene.swift in Sources */,
 				71225C1C1F1E0DC900F38273 /* GameViewController.swift in Sources */,
+				71CB0DBB1F1F57AC00A05DB1 /* Substance.swift in Sources */,
 				71225C141F1E0DC900F38273 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,6 +407,7 @@
 				71225C2A1F1E0DC900F38273 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
