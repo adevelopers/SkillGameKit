@@ -27,7 +27,7 @@ class GameScene: SKScene {
         self.lastUpdateTime = 0
         if !isBackgroundHiden { addBackground() }
         addCamera()
-        addSubstanceNode()
+        addSubstanceNodes()
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
