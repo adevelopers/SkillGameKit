@@ -18,6 +18,8 @@ class GameScene: SKScene {
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
     var isBackgroundHiden = true
+    var currentPosition: CGPoint = .zero
+    var number: Int = 0
 
     private var lastUpdateTime : TimeInterval = 0
     
@@ -66,6 +68,37 @@ extension GameScene {
 }
 
 extension GameScene {
+    
+    func addShapeNode(title: String, previousPosition: CGPoint = .zero) {
+        var previous: CGPoint = previousPosition
+        previous.x += 50
+        
+        if number%2 == 0 {
+            previous.y -= 50
+        } else {
+            previous.y += 50
+        }
+        
+        let node = SKLabelNode(fontNamed: "PT Sans")
+        node.fontSize = 40
+        node.text = title
+        let newPosition = previous
+        currentPosition = newPosition
+        node.position = currentPosition
+        let line = UIBezierPath()
+        line.move(to: previousPosition)
+        line.addLine(to: newPosition)
+        line.close()
+        let relation = SKShapeNode(path: line.cgPath )
+        addChild(node)
+        
+        if number > 0 {
+            addChild(relation)
+        }
+        
+        number += 1
+    }
+    
     
     @discardableResult
     func walk(by substance: Substance<SubstanceType>?, render: (Substance<SubstanceType>)->Void = {_ in } ) -> Substance<SubstanceType>? {
