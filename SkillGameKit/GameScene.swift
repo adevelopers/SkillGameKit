@@ -15,13 +15,13 @@ class GameScene: SKScene {
     
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
-    
+    var isBackgroundHiden = true
 
     private var lastUpdateTime : TimeInterval = 0
     
     override func sceneDidLoad() {
         self.lastUpdateTime = 0
-        addBackground()
+        if !isBackgroundHiden { addBackground() }
         addCamera()
     }
     
