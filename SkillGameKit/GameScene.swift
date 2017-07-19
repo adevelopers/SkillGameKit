@@ -69,6 +69,21 @@ extension GameScene {
 
 extension GameScene {
     
+    func addSubstanceNodes() {
+        let substance1 = Substance(value: "C",
+                                   child: Substance(value: "C",
+                                                    child: Substance(value: "C",
+                                                                     
+                                                                     child: Substance(value: "C"))
+        ))
+        
+        let substance2 = Substance(value: "C", child: substance1)
+        
+        addSubstanceNode(by: substance1)
+        currentPosition = CGPoint(x: -200, y: -100)
+        addSubstanceNode(by: substance2)
+    }
+    
     func addShapeNode(title: String, previousPosition: CGPoint = .zero) {
         var previous: CGPoint = previousPosition
         previous.x += 50
