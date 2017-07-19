@@ -107,12 +107,11 @@ extension GameScene {
         return walk(by: substance.child, render: render)
     }
     
-    func addSubstanceNode() {
-        let rootSubstance = Substance(value: "H",
-                                      child: Substance(value: "C",
-                                                       child: Substance(value: "H")))
-        walk(by: rootSubstance) { substance in
+    func addSubstanceNode(by substance: Substance<SubstanceType>) {
+        number = 0
+        walk(by: substance) { [weak self] substance in
             print("substance: \(substance.value)")
+            self?.addShapeNode(title: substance.value, previousPosition: (self?.currentPosition)!)
         }
     }
 }
