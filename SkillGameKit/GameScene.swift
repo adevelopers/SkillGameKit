@@ -20,14 +20,23 @@ class GameScene: SKScene {
     var isBackgroundHiden = true
     var currentPosition: CGPoint = .zero
     var number: Int = 0
+    var maxElectrons = 7
 
     private var lastUpdateTime : TimeInterval = 0
     
     override func didMove(to view: SKView) {
-        self.lastUpdateTime = 0
+        physicsWorld.gravity = CGVector.zero
+        view.backgroundColor = UIColor.darkGray
+        lastUpdateTime = 0
         if !isBackgroundHiden { addBackground() }
         addCamera()
-        addSubstanceNodes()
+        addGravityAtom()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        let tapLocation = touch.location(in: self)
+        addElectron(to: tapLocation)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -114,7 +123,6 @@ extension GameScene {
         number += 1
     }
     
-    
     @discardableResult
     func walk(by substance: Substance<SubstanceType>?, render: (Substance<SubstanceType>)->Void = {_ in } ) -> Substance<SubstanceType>? {
         guard let substance = substance else { return nil }
@@ -132,6 +140,22 @@ extension GameScene {
 }
 
 extension GameScene {
+    
+    func addElectron(to position: CGPoint) {
+        if number > maxElectrons { return }
+        let p = SKShapeNode(circleOfRadius: 10)
+        p.fillColor = .yellow
+        p.strokeColor = .clear
+        p.physicsBody = SKPhysicsBody(circleOfRadius: p.frame.width)
+        p.physicsBody?.isDynamic = true
+        p.physicsBody?.mass = 5
+        p.position = position
+        addChild(p)
+        let impulseVelosity: CGFloat = 150
+        p.physicsBody?.applyImpulse(CGVector(dx: 0,
+                                             dy: impulseVelosity * p.physicsBody!.mass))
+        number += 1
+    }
     
     func addGravityAtom() {
         let circle = SKShapeNode(circleOfRadius: 40)
