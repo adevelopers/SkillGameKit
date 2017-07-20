@@ -11,18 +11,32 @@ import GameplayKit
 
 class GameScene: SKScene {
     
+    typealias SubstanceType = String
+    
     var background: SKSpriteNode!
     
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
     var isBackgroundHiden = true
+    var currentPosition: CGPoint = .zero
+    var number: Int = 0
+    var maxElectrons = 7
 
     private var lastUpdateTime : TimeInterval = 0
     
-    override func sceneDidLoad() {
-        self.lastUpdateTime = 0
+    override func didMove(to view: SKView) {
+        physicsWorld.gravity = CGVector.zero
+        view.backgroundColor = UIColor.darkGray
+        lastUpdateTime = 0
         if !isBackgroundHiden { addBackground() }
         addCamera()
+        addGravityAtom()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        let tapLocation = touch.location(in: self)
+        addElectron(to: tapLocation)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -58,6 +72,107 @@ extension GameScene {
         let newCamera = SKCameraNode()
         camera = newCamera
         addChild(newCamera)
+    }
+    
+}
+
+extension GameScene {
+    
+    func addSubstanceNodes() {
+        let substance1 = Substance(value: "C",
+                                   child: Substance(value: "C",
+                                                    child: Substance(value: "C",
+                                                                     child: Substance(value: "H"))
+        ))
+        
+        let substance2 = Substance(value: "H", child: substance1)
+        
+        addSubstanceNode(by: substance1)
+        currentPosition = CGPoint(x: -200, y: -100)
+        addSubstanceNode(by: substance2)
+    }
+    
+    func addShapeNode(title: String, previousPosition: CGPoint = .zero) {
+        var previous: CGPoint = previousPosition
+        previous.x += 50
+        
+        if number%2 == 0 {
+            previous.y -= 50
+        } else {
+            previous.y += 50
+        }
+        
+        let node = SKLabelNode(fontNamed: "American Typewriter")
+        node.fontSize = 40
+        node.text = title
+        let newPosition = previous
+        currentPosition = newPosition
+        node.position = currentPosition
+        let line = UIBezierPath()
+        line.move(to: previousPosition)
+        line.addLine(to: newPosition)
+        line.close()
+        let relation = SKShapeNode(path: line.cgPath )
+        relation.lineWidth = 4
+        addChild(node)
+        
+        if number > 0 {
+            addChild(relation)
+        }
+        
+        number += 1
+    }
+    
+    @discardableResult
+    func walk(by substance: Substance<SubstanceType>?, render: (Substance<SubstanceType>)->Void = {_ in } ) -> Substance<SubstanceType>? {
+        guard let substance = substance else { return nil }
+        render(substance)
+        return walk(by: substance.child, render: render)
+    }
+    
+    func addSubstanceNode(by substance: Substance<SubstanceType>) {
+        number = 0
+        walk(by: substance) { [weak self] substance in
+            print("\(substance.value)", terminator: "")
+            self?.addShapeNode(title: substance.value, previousPosition: (self?.currentPosition)!)
+        }
+    }
+}
+
+extension GameScene {
+    
+    func addElectron(to position: CGPoint) {
+        if number > maxElectrons { return }
+        let p = SKShapeNode(circleOfRadius: 10)
+        p.fillColor = .yellow
+        p.strokeColor = .clear
+        p.physicsBody = SKPhysicsBody(circleOfRadius: p.frame.width)
+        p.physicsBody?.isDynamic = true
+        p.physicsBody?.mass = 5
+        p.position = position
+        addChild(p)
+        let impulseVelosity: CGFloat = 150
+        p.physicsBody?.applyImpulse(CGVector(dx: 0,
+                                             dy: impulseVelosity * p.physicsBody!.mass))
+        number += 1
+    }
+    
+    func addGravityAtom() {
+        let circle = SKShapeNode(circleOfRadius: 40)
+        circle.position = .zero
+        circle.fillColor = .blue
+        addChild(circle)
+        let gravityDistance: Float = 200
+        let gravityBorder = SKShapeNode(circleOfRadius: CGFloat(gravityDistance))
+        gravityBorder.position = .zero
+        addChild(gravityBorder)
+        let gravityField = SKFieldNode.radialGravityField()
+        gravityField.position = circle.position
+        gravityField.region = SKRegion(radius: gravityDistance)
+        gravityField.strength = 3
+        gravityField.minimumRadius = 30
+        gravityField.isEnabled = true
+        addChild(gravityField)
     }
     
 }
