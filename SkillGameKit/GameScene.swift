@@ -73,11 +73,10 @@ extension GameScene {
         let substance1 = Substance(value: "C",
                                    child: Substance(value: "C",
                                                     child: Substance(value: "C",
-                                                                     
-                                                                     child: Substance(value: "C"))
+                                                                     child: Substance(value: "H"))
         ))
         
-        let substance2 = Substance(value: "C", child: substance1)
+        let substance2 = Substance(value: "H", child: substance1)
         
         addSubstanceNode(by: substance1)
         currentPosition = CGPoint(x: -200, y: -100)
@@ -94,7 +93,7 @@ extension GameScene {
             previous.y += 50
         }
         
-        let node = SKLabelNode(fontNamed: "PT Sans")
+        let node = SKLabelNode(fontNamed: "American Typewriter")
         node.fontSize = 40
         node.text = title
         let newPosition = previous
@@ -126,7 +125,7 @@ extension GameScene {
     func addSubstanceNode(by substance: Substance<SubstanceType>) {
         number = 0
         walk(by: substance) { [weak self] substance in
-            print("substance: \(substance.value)")
+            print("\(substance.value)", terminator: "")
             self?.addShapeNode(title: substance.value, previousPosition: (self?.currentPosition)!)
         }
     }
