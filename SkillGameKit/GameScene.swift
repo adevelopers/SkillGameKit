@@ -130,3 +130,25 @@ extension GameScene {
         }
     }
 }
+
+extension GameScene {
+    
+    func addGravityAtom() {
+        let circle = SKShapeNode(circleOfRadius: 40)
+        circle.position = .zero
+        circle.fillColor = .blue
+        addChild(circle)
+        let gravityDistance: Float = 200
+        let gravityBorder = SKShapeNode(circleOfRadius: CGFloat(gravityDistance))
+        gravityBorder.position = .zero
+        addChild(gravityBorder)
+        let gravityField = SKFieldNode.radialGravityField()
+        gravityField.position = circle.position
+        gravityField.region = SKRegion(radius: gravityDistance)
+        gravityField.strength = 3
+        gravityField.minimumRadius = 30
+        gravityField.isEnabled = true
+        addChild(gravityField)
+    }
+    
+}
